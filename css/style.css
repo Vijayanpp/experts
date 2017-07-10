@@ -7381,3 +7381,8 @@ input.shop-submit:hover{
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
 }
+
+.service-content-img img
+{
+	height:321px;
+}
