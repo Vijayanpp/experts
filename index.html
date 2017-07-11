@@ -7,7 +7,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- TITLE -->
-      <title>Experts</title>
+       <title>The Experts-Group of Experts</title>
+	   <meta name="description" content="Free and impartial business advice, set up by a group of  techies, advice & guides to help improve your finance">
+       <meta name="keywords" content="Web Application Development,Mobile Application Development,Bug Fixing,Quality Analysis,Training, development,HTML Training,CSS Training,JavaScript Training etc">
       <!-- FAVICON -->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />      
       <!-- Bootstrap -->
@@ -49,6 +51,17 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
+     <script>
+	   var config = {
+    apiKey: "AIzaSyDek1AWxI36za18geZDyVwbX19Amz2zgp8",
+    authDomain: "experts-5e985.firebaseapp.com",
+    databaseURL: "https://experts-5e985.firebaseio.com",
+    projectId: "experts-5e985",
+    storageBucket: "experts-5e985.appspot.com",
+    messagingSenderId: "1019683346217"
+    };
+  firebase.initializeApp(config);
+	  </script>
    <body>
 
       <!-- =========================
@@ -82,7 +95,7 @@
                         </li>        
                                             
                         </li>                                          
-                        <li><a href="#">BLOG</a>
+                        <li><a href="courses.html">Courses</a>
                             
                         </li>
 						
@@ -93,7 +106,7 @@
                         <li><a href="contact.html">Contact</a></li>
                      </ul>
 		               <div class="appointment-area">
-		                  <p><a href="reg/form.html">Register</a></p>
+		                  <p><a href="reg/form.html">Request a Call</a></p>
 		               </div>                     
                </div>
             </div>
@@ -616,13 +629,13 @@
                         <form>
                            <div class="row">
                               <div class="col-sm-6">
-                                 <input type="text" class="form-control" placeholder="Your Name:"> 
+                                 <input type="text" id='name' class="form-control" placeholder="Your Name:"> 
                               </div>
                               <div class="col-sm-6">
-                                 <input type="email" class="form-control" placeholder="Your Email:">
+                                 <input type="email" id='email' class="form-control" placeholder="Your Email:">
                               </div>
                               <div class="col-sm-6">
-                                 <input type="text" class="form-control" placeholder="Phone:">
+                                 <input type="text" id='mobile' class="form-control" placeholder="Phone:">
                               </div>
                               <div class="col-sm-6">
                                  <select class="form-control">
@@ -631,10 +644,10 @@
                                  </select>
                               </div>
                               <div class="col-sm-12">
-                                  <textarea class="form-control" rows="3"  placeholder="Other Details:"></textarea>
+                                  <textarea class="form-control" rows="3" id='details' placeholder="Other Details:"></textarea>
                               </div>
                               <div class="col-sm-12 text-center">
-                                 <button type="button" class="btn btn-dm">Register</button>
+                                 <button type="button" class="btn btn-dm" onclick='saveToList(event)'>Register</button>
                               </div>
                            </div>
                         </form> 
@@ -917,5 +930,34 @@
       <script src="js/main.js"></script>       
    </body>
 
+<script>
+function saveToList(event) {
 
+  
+        var name = document.getElementById('name').value.trim();
+		var email = document.getElementById('email').value.trim();
+		var mobile = document.getElementById('mobile').value.trim();
+		var details= document.getElementById('details').value.trim();
+        if (mobile.length > 5) {
+            saveToFB(name,email,mobile);
+        }
+        document.getElementById('name').value = '';
+		 document.getElementById('email').value = '';
+   	    document.getElementById('mobile').value='';
+    
+};
+
+function saveToFB(name,email,mobile,details) {
+  var datas = firebase.database().ref();
+
+    // this will save data to Firebase
+    datas.push({
+        name: name,
+		email:email,
+		mobile:mobile,
+		details:details
+    });
+	alert("Thanks for the interest.Our representative will contact you")
+};
+</script>
 </html>

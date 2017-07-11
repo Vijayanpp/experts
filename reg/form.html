@@ -4,8 +4,10 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title></title>
+ 
+ <title>The Experts-Group of Experts</title>
+	   <meta name="description" content="Free and impartial business advice, set up by a group of  techies, advice & guides to help improve your finance">
+       <meta name="keywords" content="Web Application Development,Mobile Application Development,Bug Fixing,Quality Analysis,Training, development,HTML Training,CSS Training,JavaScript Training etc">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./form.com_files/style.css">
@@ -14,6 +16,20 @@
   <!--Google Fonts-->
   <link href="./form.com_files/css" rel="stylesheet" type="text/css">
   <link href="./form.com_files/css(1)" rel="stylesheet" type="text/css">
+  
+  <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDek1AWxI36za18geZDyVwbX19Amz2zgp8",
+    authDomain: "experts-5e985.firebaseapp.com",
+    databaseURL: "https://experts-5e985.firebaseio.com",
+    projectId: "experts-5e985",
+    storageBucket: "experts-5e985.appspot.com",
+    messagingSenderId: "1019683346217"
+  };
+  firebase.initializeApp(config);
+</script>
 
 <style type="text/css">.backpack.dropzone {
   font-family: 'SF UI Display', 'Segoe UI';
@@ -73,6 +89,7 @@
     background-position: -5000px; } }
 </style></head>
 
+
 <body>
 <div id="main-wrapper">
 
@@ -80,7 +97,7 @@
     <div class="row">
       <div class="col-md-6 left-side">
         <header>
-          <span>Start Your Online Business</span>
+          <span>Have an Idea</span>
           <h3>Get Expert<br>Advice</h3>
         </header>
       </div>
@@ -105,15 +122,15 @@
         </span>
      
         <div class="cta">
-          <button class="btn btn-primary pull-left">
-           Register Now
+          <button class="btn btn-primary pull-left" onClick='saveToList(event)'>
+           Register
           </button>
           <span><a href="../index.html">Home</a></span>
         </div>
         <ul class="social list-inline">
           <li><a href="#">Facebook</a></li>
           <li><a href="#">Twitter</a></li>
-          <li><a href="#">Linkedin</a></li>
+          
         </ul>
       </div>
     </div>
@@ -158,7 +175,43 @@
         classie.remove( ev.target.parentNode, 'input--filled' );
       }
     }
+	
+	
+	
+	
+	
   })();
+  
+  
+
+ 
+function saveToList(event) {
+
+  
+        var name = document.getElementById('name').value.trim();
+		var email = document.getElementById('email').value.trim();
+		var mobile = document.getElementById('mobile').value.trim();
+        if (mobile.length > 5) {
+            saveToFB(name,email,mobile);
+        }
+        document.getElementById('name').value = '';
+		 document.getElementById('email').value = '';
+   	  document.getElementById('mobile').value='';
+    
+};
+
+function saveToFB(name,email,mobile) {
+  var datas = firebase.database().ref();
+
+    // this will save data to Firebase
+    datas.push({
+        name: name,
+		email:email,
+		mobile:mobile
+    });
+	window.open("../index.html","_parent")
+};
+ 
 </script>
 
 
