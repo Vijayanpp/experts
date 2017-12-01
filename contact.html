@@ -85,7 +85,7 @@
                   <a href="home.html" class="menuzord-brand"><img src="images/logo.png" alt=""></a>
                                 
                      <ul class="menuzord-menu menuzord-menu-bg">
-                        <li class="active"><a href="home.html">Home</a>
+                        <li ><a href="home.html">Home</a>
                                           
                         </li>
 						 <li><a href="aboutus.html">About Us</a>
@@ -103,7 +103,7 @@
                               
                         </li>   
                                                                
-                        <li><a href="contact.html">Contact</a></li>
+                        <li class='active'><a href="contact.html">Contact</a></li>
                      </ul>
 		               <div class="appointment-area">
 		                  <p><a href="reg/form.html">Request a Call</a></p>
@@ -357,8 +357,13 @@
 		var mobile = document.getElementById('Phone').value.trim();
 		var subject = document.getElementById('Subject').value.trim();
 		var message = document.getElementById('Message').value.trim();
+		if(name==''||email==''||mobile==''||subject==''||message=='')
+		{
+		alert("Some fileds are missing")
+		}
         if (mobile.length > 5) {
             saveToFB(name,email,mobile,subject,message);
+			alert("we will get back to you very soon")
         }
          document.getElementById('Name').value = '';
 		 document.getElementById('Email').value = '';
@@ -366,7 +371,7 @@
 		 
 		 document.getElementById('Subject').value = '';
    	     document.getElementById('Message').value='';
-		 alert("We will get back to you soon")
+		
     
 };
 
